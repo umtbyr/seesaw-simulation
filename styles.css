@@ -5,6 +5,7 @@
   --color-plank: #b78f1a;
   --color-pivot: #3d3c3b;
   --color-text: #435a70;
+  --color-object: #eee9e7;
 }
 
 * {
@@ -90,4 +91,17 @@ body {
     font-size: larger;
     font-weight: bold;
   }
+}
+
+.object {
+  position: absolute;
+  bottom: 100%;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(-50%);
+  background: var(--color-object);
 }

@@ -64,8 +64,6 @@ export const createHistoryItemContent = ({ weight, distanceToCenter }) => {
 
 export const loadSoundPreferences = () => {
   const preferences = getSoundPreferences();
-  console.log(preferences);
-
   if (!preferences) return DEFAULT_SOUND_PREFERENCES;
   return preferences;
 };

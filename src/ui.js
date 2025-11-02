@@ -99,7 +99,9 @@ export const setMuteButtonClickHandler = () => {
 export const setVolumeInputClcikHandler = () => {
   volumeInput.addEventListener("input", () => {
     const value = volumeInput.value / 100;
-    SoundEffectManager.setVolume(value / 100);
+    SoundEffectManager.setVolume(value);
+    console.log("volume: ", SoundEffectManager.volume);
+
     setSoundPreferencesDebounced({ volume: value });
   });
 };

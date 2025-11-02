@@ -16,6 +16,7 @@ import {
   updateMuteIcon,
   setVolumeInputClcikHandler,
   updateVolumeInput,
+  setSeesawMouseEventHandler,
 } from "./ui.js";
 import {
   getRandomInt,
@@ -67,6 +68,7 @@ const bindHandlers = () => {
   setResetButtonHandler(handleReset);
   setMuteButtonClickHandler();
   setVolumeInputClcikHandler();
+  setSeesawMouseEventHandler();
 };
 
 const start = () => {

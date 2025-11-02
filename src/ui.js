@@ -4,6 +4,7 @@ import {
   setSoundPreferences,
   setSoundPreferencesDebounced,
 } from "./storage.js";
+import { getCoordinateOnSeesaw } from "./utils.js";
 
 const seesaw = document.querySelector("#seesaw");
 const nextWeightInfo = document.querySelector("#next-weight-info");
@@ -14,6 +15,7 @@ const resetButton = document.querySelector("#reset-button");
 const historySection = document.querySelector("#game-history-section");
 const muteButton = document.querySelector("#mute-btn");
 const volumeInput = document.querySelector("#volume-input");
+const distanceIndicator = document.querySelector("#distance-indicator");
 
 export const renderObject = ({ positionX, weight, color }) => {
   const size = weight * OBJECT_SIZE_FACTOR + "px";
@@ -101,5 +103,25 @@ export const setVolumeInputClcikHandler = () => {
     const value = volumeInput.value / 100;
     SoundEffectManager.setVolume(value);
     setSoundPreferencesDebounced({ volume: value });
+  });
+};
+
+export const setSeesawMouseEventHandler = () => {
+  seesaw.addEventListener("mouseleave", () => {
+    distanceIndicator.style.width = "0";
+  });
+  seesaw.addEventListener("mousemove", (event) => {
+    const angleDeg = parseFloat(tiltAngleInfo.textContent);
+    const centerX = seesaw.clientWidth / 2;
+    const centerY = seesaw.clientHeight / 2;
+    const localX = getCoordinateOnSeesaw(event, seesaw, angleDeg);
+    const distance = localX - centerX;
+    /* 
+    even we rotate the indicator acc to seesaw
+    with CSS variables if mouse change side 
+    we should rotate indicator to oposite direction */
+    const thetaLocal = distance >= 0 ? 0 : Math.PI;
+    distanceIndicator.style.transform = `translate(${centerX}px, ${centerY}px) rotate(${thetaLocal}rad)`;
+    distanceIndicator.style.width = `${Math.abs(distance)}px`;
   });
 };

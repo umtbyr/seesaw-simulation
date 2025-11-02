@@ -130,6 +130,18 @@ button {
   z-index: 90;
 }
 
+#distance-indicator {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 2px;
+  background: var(--color-bg-light-gray);
+  transform-origin: 0 50%;
+  pointer-events: none;
+  width: 0;
+  z-index: 300;
+}
+
 #controls {
   display: flex;
   background: var(--color-bg-light-gray);

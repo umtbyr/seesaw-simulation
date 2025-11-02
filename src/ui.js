@@ -7,21 +7,18 @@ const rightWeightInfo = document.querySelector("#right-weight-info");
 const tiltAngleInfo = document.querySelector("#tilt-angle-info");
 const resetButton = document.querySelector("#reset-button");
 const historySection = document.querySelector("#game-history-section");
-const labels = [];
 
 export const renderObject = ({ positionX, weight, color }) => {
   const size = weight * OBJECT_SIZE_FACTOR + "px";
   const object = document.createElement("div");
   object.className = "object";
-  //since we make the object's position absolute it will be positioned relative to seesaw (because objects are children of the seesaw)
+  /*   since we make the object's position absolute it will be positioned
+   relative to seesaw (because objects are children of the seesaw) */
   object.style.left = positionX + "px";
   object.style.width = size;
   object.style.height = size;
   object.style.background = color;
   object.innerHTML = `<span class="label">${weight}</span>`;
-  /*   store the label refs in runtime memory
-  to not run DOM query for every angle change */
-  labels.push(object.querySelector(".label"));
   seesaw.appendChild(object);
 };
 
@@ -30,17 +27,14 @@ export const renderHistoryItem = ({ weight, distanceToCenter }) => {
   historyItem.className = "history-item";
   historyItem.textContent = `📦 ${weight} kg dropped on ${
     distanceToCenter > 0 ? "left" : "right"
-  } side at ${distanceToCenter.toFixed(1)}px from center `;
+  } side at ${distanceToCenter.toFixed(1)}px from center`;
   historySection.prepend(historyItem);
 };
 
 export const setAngle = (angle) => {
   tiltAngleInfo.textContent = `${angle.toFixed(2)}°`;
   seesaw.style.transform = `translateX(-50%) translateY(-50%) rotate(${angle}deg)`;
-
-  labels.forEach((label) => {
-    label.style.transform = `rotate(${-angle}deg)`;
-  });
+  seesaw.style.setProperty("--neg-angle", `${-angle}deg`);
 };
 
 export const setWeightInfo = ({ leftWeight, rightWeight }) => {

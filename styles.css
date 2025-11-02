@@ -6,6 +6,7 @@
   --color-pivot: #1a1817;
   --color-text: #435a70;
   --color-object: #eee9e7;
+  --neg-angle: 0deg;
 }
 
 * {
@@ -164,7 +165,9 @@ body {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-weight: bolder;
   transition: transform 0.2s linear;
+  transform: rotate(var(--neg-angle));
 }
+
 @keyframes fall-object {
   to {
     transform: translate(-50%, 0);

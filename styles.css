@@ -26,6 +26,14 @@ body {
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
+button {
+  all: unset;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #main-layout {
   width: 1000px;
   height: 1000px;
@@ -87,7 +95,6 @@ body {
   border: 1px solid var(--color-bg-medium-gray);
   text-align: center;
   color: var(--color-bg-light-gray);
-  cursor: pointer;
   background: #7aa1c7;
   font-size: medium;
 }
@@ -122,11 +129,29 @@ body {
   z-index: 90;
 }
 
+#controls {
+  display: flex;
+  background: var(--color-bg-light-gray);
+  height: 100%;
+  align-items: start;
+  background: #ffffff;
+}
+
+#mute-btn {
+  display: flex;
+  border-radius: 50%;
+  font-size: x-large;
+}
+#mute-btn:hover {
+  transform: scale(1.2);
+}
+
 .info-box {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  min-width: 120px;
   background: var(--color-bg-light-gray);
   padding: 1rem;
   border-radius: 0.25rem;

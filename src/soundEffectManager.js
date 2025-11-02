@@ -27,7 +27,7 @@ export class SoundEffectManager {
   }
 
   static toggleMute() {
-    this.mute = !this.mute;
+    this.muted = !this.muted;
   }
 
   static setVolume(volume) {

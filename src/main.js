@@ -12,6 +12,8 @@ import {
   renderHistoryItem,
   clearHistory,
   getSeesawElement,
+  setMuteButtonClickHandler,
+  updateMuteIcon,
 } from "./ui.js";
 import {
   getRandomInt,
@@ -94,3 +96,4 @@ const handleReset = () => {
 
 setSeesawClickHandler(handleOnSeesawClick);
 setResetButtonHandler(handleReset);
+setMuteButtonClickHandler(updateMuteIcon);

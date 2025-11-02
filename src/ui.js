@@ -1,4 +1,5 @@
 import { OBJECT_SIZE_FACTOR } from "./const.js";
+import { SoundEffectManager } from "./soundEffectManager.js";
 
 const seesaw = document.querySelector("#seesaw");
 const nextWeightInfo = document.querySelector("#next-weight-info");
@@ -7,6 +8,7 @@ const rightWeightInfo = document.querySelector("#right-weight-info");
 const tiltAngleInfo = document.querySelector("#tilt-angle-info");
 const resetButton = document.querySelector("#reset-button");
 const historySection = document.querySelector("#game-history-section");
+const muteButton = document.querySelector("#mute-btn");
 
 export const renderObject = ({ positionX, weight, color }) => {
   const size = weight * OBJECT_SIZE_FACTOR + "px";
@@ -48,8 +50,9 @@ export const getSeesawElement = () => {
   return seesaw;
 };
 
-export const getSeesawRect = () => {
-  return seesaw;
+export const updateMuteIcon = () => {
+  SoundEffectManager.toggleMute();
+  muteButton.textContent = SoundEffectManager.muted ? "🔇" : "🔊";
 };
 
 export const clearObjects = () => {
@@ -68,4 +71,8 @@ export const setResetButtonHandler = (handler) => {
 
 export const setSeesawClickHandler = (handler) => {
   seesaw.addEventListener("click", handler);
+};
+
+export const setMuteButtonClickHandler = (handler) => {
+  muteButton.addEventListener("click", handler);
 };

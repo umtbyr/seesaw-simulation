@@ -50,3 +50,9 @@ export const getCoordinateOnSeesaw = (event, seesaw, angle) => {
     coordinateOnSeesaw = widthAfterRotation;
   return coordinateOnSeesaw;
 };
+
+export const createHistoryItemContent = ({ weight, distanceToCenter }) => {
+  return `📦 ${weight} kg dropped on ${
+    distanceToCenter > 0 ? "left" : "right"
+  } side at ${distanceToCenter.toFixed(1)}px from center`;
+};

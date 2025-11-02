@@ -16,9 +16,11 @@ import {
   getRandomInt,
   getCoordinateOnSeesaw,
   getRandomColor,
+  createHistoryItemContent,
 } from "./utils.js";
 
 const objects = [];
+const historyItems = [];
 let nextWeight = getRandomInt();
 let angle = 0;
 const savedState = getState();
@@ -30,6 +32,10 @@ if (savedState) {
       color: object.color,
     });
     objects.push(object);
+  });
+  savedState.historyItems.forEach((historyItem) => {
+    renderHistoryItem(historyItem);
+    historyItems.push(historyItem);
   });
   nextWeight = savedState.nextWeight;
   angle = savedState.angle;
@@ -52,7 +58,12 @@ const handleOnSeesawClick = (event) => {
   const center = seesaw.clientWidth / 2;
   const distanceToCenter = center - leftPx;
   objects.push({ distanceToCenter, weight: nextWeight, color });
-  renderHistoryItem({ distanceToCenter, weight: nextWeight });
+  const historyItemContent = createHistoryItemContent({
+    weight: nextWeight,
+    distanceToCenter,
+  });
+  historyItems.push(historyItemContent);
+  renderHistoryItem(historyItemContent);
   angle = calculateSeesawAngle(objects);
   setAngle(angle);
   setWeightInfo(calculateTotalWeights(objects));
@@ -62,6 +73,7 @@ const handleOnSeesawClick = (event) => {
     objects,
     nextWeight,
     angle,
+    historyItems,
   });
 };
 

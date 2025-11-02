@@ -22,12 +22,10 @@ export const renderObject = ({ positionX, weight, color }) => {
   seesaw.appendChild(object);
 };
 
-export const renderHistoryItem = ({ weight, distanceToCenter }) => {
+export const renderHistoryItem = (content) => {
   const historyItem = document.createElement("div");
   historyItem.className = "history-item";
-  historyItem.textContent = `📦 ${weight} kg dropped on ${
-    distanceToCenter > 0 ? "left" : "right"
-  } side at ${distanceToCenter.toFixed(1)}px from center`;
+  historyItem.textContent = content;
   historySection.prepend(historyItem);
 };
 

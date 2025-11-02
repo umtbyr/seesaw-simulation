@@ -7,6 +7,7 @@ const leftWeightInfo = document.querySelector("#left-weight-info");
 const rightWeightInfo = document.querySelector("#right-weight-info");
 const tiltAngleInfo = document.querySelector("#tilt-angle-info");
 const resetButton = document.querySelector("#reset-button");
+const historySection = document.querySelector("#game-history-section");
 const labels = [];
 
 export const renderObject = ({ positionX, weight }) => {
@@ -23,6 +24,15 @@ export const renderObject = ({ positionX, weight }) => {
   to not run DOM query for every angle change */
   labels.push(object.querySelector(".label"));
   seesaw.appendChild(object);
+};
+
+export const renderHistoryItem = ({ weight, distanceToCenter }) => {
+  const historyItem = document.createElement("div");
+  historyItem.className = "history-item";
+  historyItem.textContent = `📦 ${weight} kg dropped on ${
+    distanceToCenter > 0 ? "left" : "right"
+  } side at ${distanceToCenter.toFixed(1)}px from center `;
+  historySection.prepend(historyItem);
 };
 
 export const setAngle = (angle) => {

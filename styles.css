@@ -30,7 +30,8 @@ body {
   height: 1000px;
   display: flex;
   flex-direction: column;
-  padding: 6rem;
+  padding: 3rem;
+  gap: 2rem;
   justify-content: space-between;
   align-items: center;
   background-color: var(--color-bg-white);
@@ -43,12 +44,34 @@ body {
   gap: 2rem;
 }
 
+#game-history-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: small;
+  padding: 1rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  height: 250px;
+  width: 100%;
+  border-radius: 0.5rem;
+  background-color: var(--color-bg-light-gray);
+  overflow-y: auto;
+}
+
+.history-item {
+  background: var(--color-bg-white);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  animation: fall-history-item 0.6s cubic-bezier(0.25, 0.7, 0.25, 1) forwards;
+}
+
 #playground {
   width: 800px;
   height: 500px;
   background: linear-gradient(
     to top,
-    rgb(116, 226, 116) 35%,
+    rgb(154, 247, 142) -20%,
     rgb(137, 212, 241) 50%
   );
   position: relative;
@@ -64,12 +87,11 @@ body {
   text-align: center;
   color: var(--color-bg-light-gray);
   cursor: pointer;
-  background: #4fa1ee;
+  background: #7aa1c7;
   font-size: medium;
   font-weight: bold;
 }
 #reset-button:hover {
-  background: #2690f3;
   transform: scale(1.05);
 }
 
@@ -132,7 +154,7 @@ body {
   color: #ffffff;
   transform: translate(-50%, -80px);
   will-change: transform;
-  animation: fall 0.6s cubic-bezier(0.25, 0.7, 0.25, 1) forwards;
+  animation: fall-object 0.6s cubic-bezier(0.25, 0.7, 0.25, 1) forwards;
 }
 
 .object .label {
@@ -144,8 +166,16 @@ body {
   font-weight: bolder;
   transition: transform 0.2s linear;
 }
-@keyframes fall {
+@keyframes fall-object {
   to {
     transform: translate(-50%, 0);
+  }
+}
+@keyframes fall-history-item {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
   }
 }

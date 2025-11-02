@@ -8,6 +8,7 @@ import {
   setResetButtonHandler,
   setSeesawClickHandler,
   setWeightInfo,
+  renderHistoryItem,
 } from "./ui.js";
 import { getRandomInt, getCoordinateOnSeesaw } from "./utils.js";
 
@@ -28,6 +29,7 @@ const handleOnSeesawClick = (event) => {
   const center = seesaw.clientWidth / 2;
   const distanceToCenter = center - leftPx;
   objects.push({ distanceToCenter, weight: nextWeight });
+  renderHistoryItem({ distanceToCenter, weight: nextWeight });
   angle = calculateSeesawAngle(objects);
   setAngle(angle);
   setWeightInfo(calculateTotalWeights(objects));

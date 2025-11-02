@@ -16,6 +16,7 @@ const historySection = document.querySelector("#game-history-section");
 const muteButton = document.querySelector("#mute-btn");
 const volumeInput = document.querySelector("#volume-input");
 const distanceIndicator = document.querySelector("#distance-indicator");
+const distanceLabel = distanceIndicator.querySelector(".distance-label");
 
 export const renderObject = ({ positionX, weight, color }) => {
   const size = weight * OBJECT_SIZE_FACTOR + "px";
@@ -109,6 +110,7 @@ export const setVolumeInputClcikHandler = () => {
 export const setSeesawMouseEventHandler = () => {
   seesaw.addEventListener("mouseleave", () => {
     distanceIndicator.style.width = "0";
+    distanceLabel.style.opacity = "0";
   });
   seesaw.addEventListener("mousemove", (event) => {
     const angleDeg = parseFloat(tiltAngleInfo.textContent);
@@ -123,5 +125,9 @@ export const setSeesawMouseEventHandler = () => {
     const thetaLocal = distance >= 0 ? 0 : Math.PI;
     distanceIndicator.style.transform = `translate(${centerX}px, ${centerY}px) rotate(${thetaLocal}rad)`;
     distanceIndicator.style.width = `${Math.abs(distance)}px`;
+
+    distanceLabel.textContent = `${Math.abs(distance).toFixed(0)}m`;
+    distanceLabel.style.transform = `rotate(${thetaLocal}rad)`;
+    distanceLabel.style.opacity = "1";
   });
 };

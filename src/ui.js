@@ -62,6 +62,12 @@ export const clearObjects = () => {
   if (labels.length > 0) labels.length = 0;
 };
 
+export const clearHistory = () => {
+  historySection
+    .querySelectorAll(".history-item")
+    .forEach((item) => item.remove());
+};
+
 export const setResetButtonHandler = (handler) => {
   resetButton.addEventListener("click", handler);
 };

@@ -71,7 +71,7 @@ body {
   height: 500px;
   background: linear-gradient(
     to top,
-    rgb(154, 247, 142) -20%,
+    rgb(160, 255, 148) -20%,
     rgb(137, 212, 241) 50%
   );
   position: relative;
@@ -89,7 +89,6 @@ body {
   cursor: pointer;
   background: #7aa1c7;
   font-size: medium;
-  font-weight: bold;
 }
 #reset-button:hover {
   transform: scale(1.05);

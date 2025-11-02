@@ -12,7 +12,11 @@ import {
   clearHistory,
   getSeesawElement,
 } from "./ui.js";
-import { getRandomInt, getCoordinateOnSeesaw } from "./utils.js";
+import {
+  getRandomInt,
+  getCoordinateOnSeesaw,
+  getRandomColor,
+} from "./utils.js";
 
 const objects = [];
 let nextWeight = getRandomInt();
@@ -23,6 +27,7 @@ if (savedState) {
     renderObject({
       positionX: getSeesawElement().clientWidth / 2 - object.distanceToCenter,
       weight: object.weight,
+      color: object.color,
     });
     objects.push(object);
   });
@@ -37,7 +42,8 @@ setNextWeightInfo(nextWeight);
 const handleOnSeesawClick = (event) => {
   const seesaw = getSeesawElement();
   const leftPx = getCoordinateOnSeesaw(event, seesaw, angle);
-  renderObject({ positionX: leftPx, weight: nextWeight });
+  const color = getRandomColor();
+  renderObject({ positionX: leftPx, weight: nextWeight, color });
   /* 
   distanceToCenter will be used in tork calculation 
   left -> +
@@ -45,7 +51,7 @@ const handleOnSeesawClick = (event) => {
   */
   const center = seesaw.clientWidth / 2;
   const distanceToCenter = center - leftPx;
-  objects.push({ distanceToCenter, weight: nextWeight });
+  objects.push({ distanceToCenter, weight: nextWeight, color });
   renderHistoryItem({ distanceToCenter, weight: nextWeight });
   angle = calculateSeesawAngle(objects);
   setAngle(angle);

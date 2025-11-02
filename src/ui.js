@@ -1,5 +1,4 @@
 import { OBJECT_SIZE_FACTOR } from "./const.js";
-import { getRandomColor } from "./utils.js";
 
 const seesaw = document.querySelector("#seesaw");
 const nextWeightInfo = document.querySelector("#next-weight-info");
@@ -10,7 +9,7 @@ const resetButton = document.querySelector("#reset-button");
 const historySection = document.querySelector("#game-history-section");
 const labels = [];
 
-export const renderObject = ({ positionX, weight }) => {
+export const renderObject = ({ positionX, weight, color }) => {
   const size = weight * OBJECT_SIZE_FACTOR + "px";
   const object = document.createElement("div");
   object.className = "object";
@@ -18,7 +17,7 @@ export const renderObject = ({ positionX, weight }) => {
   object.style.left = positionX + "px";
   object.style.width = size;
   object.style.height = size;
-  object.style.background = getRandomColor();
+  object.style.background = color;
   object.innerHTML = `<span class="label">${weight}</span>`;
   /*   store the label refs in runtime memory
   to not run DOM query for every angle change */

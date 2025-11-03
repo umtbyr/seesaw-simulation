@@ -115,7 +115,7 @@ function handleOnSeesawClick(event) {
 
 function handleReset() {
   if (objects.length > 0) objects.length = 0;
-  if (historyItems.length > 0) objects.length = 0;
+  if (historyItems.length > 0) historyItems.length = 0;
   angle = 0;
   setAngle(angle);
   clearObjects();
